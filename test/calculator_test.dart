@@ -18,4 +18,11 @@ void main() {
     expect(calculator.add('1'), 1);
   });
 
+  // 1.3
+  test('two numbers return their sum', () {
+    final calculator = StringCalculator();
+
+    expect(calculator.add('1,5'), 6);
+  });
+
 }
