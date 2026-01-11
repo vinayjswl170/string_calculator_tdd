@@ -38,4 +38,17 @@ void main() {
     expect(calculator.add('//;\n1;2'), 3);
   });
 
+  //Step 5
+  test('negative numbers throw exception', () {
+    expect(
+          () => calculator.add('1,-2,3'),
+      throwsA(
+        predicate((e) =>
+        e is Exception &&
+            e.toString().contains('negative numbers not allowed -2')),
+      ),
+    );
+  });
+
+
 }
