@@ -50,5 +50,17 @@ void main() {
     );
   });
 
+  // Step 5.1
+  test('multiple negative numbers are listed in exception', () {
+    expect(
+          () => calculator.add('1,-2,-3'),
+      throwsA(
+        predicate(
+              (e) => e.toString().contains('-2,-3'),
+        ),
+      ),
+    );
+  });
+
 
 }
