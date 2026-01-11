@@ -20,16 +20,17 @@ void main() {
 
   // 1.3
   test('two numbers return their sum', () {
-    final calculator = StringCalculator();
-
     expect(calculator.add('1,5'), 6);
   });
 
   //Step 2
   test('multiple numbers return their sum', () {
-    final calculator = StringCalculator();
-
     expect(calculator.add('1,2,3,4'), 10);
+  });
+
+  //Step 3
+  test('numbers with new lines are supported', () {
+    expect(calculator.add('1\n2,3'), 6);
   });
 
 }
