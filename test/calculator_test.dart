@@ -67,4 +67,13 @@ void main() {
     expect(calculator.add('2,1001'), 2);
   });
 
+  // Step 7
+  test('delimiter of any length is supported', () {
+    expect(
+      calculator.add('//[***]\n1***2***3'),
+      6,
+    );
+  });
+
+
 }

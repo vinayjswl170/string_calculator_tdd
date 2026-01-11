@@ -7,11 +7,24 @@ class StringCalculator
     String delimiter = ',';
     String values = numbers;
 
+    // Handle custom delimiter
     if (numbers.startsWith('//')) {
-      delimiter = numbers[2];
-      values = numbers.substring(4);
+      final parts = numbers.split('\n');
+      final header = parts[0]; // //[***]
+      values = parts[1];
+
+      // NEW LOGIC: delimiter of any length
+      if (header.contains('[')) {
+        delimiter = header.substring(
+          header.indexOf('[') + 1,
+          header.indexOf(']'),
+        );
+      } else {
+        delimiter = header[2]; // single char delimiter
+      }
     }
 
+    // Newline support
     values = values.replaceAll('\n', delimiter);
     final numbersList = values.split(delimiter).map(int.parse).toList();
 
