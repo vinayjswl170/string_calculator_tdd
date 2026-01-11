@@ -74,7 +74,7 @@ void main() {
       6,
     );
   });
-  
+
  // Step 8
   test('multiple delimiters are supported', () {
     expect(
@@ -82,5 +82,14 @@ void main() {
       6,
     );
   });
+
+  // Step 9
+  test('multiple delimiters with length longer than one char are supported', () {
+    expect(
+      calculator.add('//[***][%%]\n1***2%%3'),
+      6,
+    );
+  });
+
 
 }
