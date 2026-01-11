@@ -25,4 +25,11 @@ void main() {
     expect(calculator.add('1,5'), 6);
   });
 
+  //Step 2
+  test('multiple numbers return their sum', () {
+    final calculator = StringCalculator();
+
+    expect(calculator.add('1,2,3,4'), 10);
+  });
+
 }
