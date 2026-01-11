@@ -4,30 +4,33 @@ class StringCalculator
     if (numbers.isEmpty) return 0; // KATA  Step 1.1
 
    // KATA Step 1.2 && 1.3 && 2 && 3 && 4 && 5 && 6
-    String delimiter = ',';
+    List<String> delimiters = [',','\n'];
     String values = numbers;
 
-    // Handle custom delimiter
+    // Handle custom delimiters
     if (numbers.startsWith('//')) {
       final parts = numbers.split('\n');
-      final header = parts[0]; // //[***]
+      final header = parts[0]; // //[*][%]
       values = parts[1];
 
-      // NEW LOGIC: delimiter of any length
-      if (header.contains('[')) {
-        delimiter = header.substring(
-          header.indexOf('[') + 1,
-          header.indexOf(']'),
-        );
+      final regex = RegExp(r'\[(.*?)\]');
+      final matches = regex.allMatches(header);
+
+      if (matches.isNotEmpty) {
+        delimiters = matches.map((m) => m.group(1)!).toList();
       } else {
-        delimiter = header[2]; // single char delimiter
+        delimiters = [header[2]];
       }
     }
 
-    // Newline support
-    values = values.replaceAll('\n', delimiter);
-    final numbersList = values.split(delimiter).map(int.parse).toList();
+    // Normalize all delimiters to comma
+    for (final delimiter in delimiters) {
+      values = values.replaceAll(delimiter, ',');
+    }
 
+    final numbersList = values.split(',').map(int.parse).toList();
+
+    // Negative numbers check
     final negatives = numbersList.where((n) => n < 0).toList();
     if (negatives.isNotEmpty) {
       throw Exception(
