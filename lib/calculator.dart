@@ -3,7 +3,7 @@ class StringCalculator
   int add(String numbers) {
     if (numbers.isEmpty) return 0; // KATA  Step 1.1
 
-   // KATA Step 1.2 && 1.3 && 2 && 3
+   // KATA Step 1.2 && 1.3 && 2 && 3 && 4 && 5 && 6
     String delimiter = ',';
     String values = numbers;
 
@@ -21,9 +21,9 @@ class StringCalculator
         'negative numbers not allowed ${negatives.join(',')}',
       );
     }
+  // Ignore >1000
+    final result = numbersList.where((n) => n <= 1000).fold(0, (sum, n) => sum + n);
 
-    final result = numbersList.reduce((a, b) => a + b);
     return result;
-
   }
 }
